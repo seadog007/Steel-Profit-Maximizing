@@ -31,7 +31,7 @@ Partial Class Form1
         Me.SpecLength = New System.Windows.Forms.NumericUpDown()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Calculate = New System.Windows.Forms.Button()
-        Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.SpecList = New System.Windows.Forms.ListBox()
         Me.DeleteSpec = New System.Windows.Forms.Button()
         Me.ClearSpec = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
@@ -53,7 +53,7 @@ Partial Class Form1
         '
         Me.GroupBox1.Controls.Add(Me.ClearSpec)
         Me.GroupBox1.Controls.Add(Me.DeleteSpec)
-        Me.GroupBox1.Controls.Add(Me.ListBox1)
+        Me.GroupBox1.Controls.Add(Me.SpecList)
         Me.GroupBox1.Controls.Add(Me.Label3)
         Me.GroupBox1.Controls.Add(Me.SpecLength)
         Me.GroupBox1.Controls.Add(Me.AddSpec)
@@ -66,9 +66,10 @@ Partial Class Form1
         '
         'Acceptable_Max_Wasted
         '
-        Me.Acceptable_Max_Wasted.Location = New System.Drawing.Point(235, 92)
+        Me.Acceptable_Max_Wasted.DecimalPlaces = 1
+        Me.Acceptable_Max_Wasted.Location = New System.Drawing.Point(261, 92)
         Me.Acceptable_Max_Wasted.Name = "Acceptable_Max_Wasted"
-        Me.Acceptable_Max_Wasted.Size = New System.Drawing.Size(227, 36)
+        Me.Acceptable_Max_Wasted.Size = New System.Drawing.Size(201, 36)
         Me.Acceptable_Max_Wasted.TabIndex = 4
         Me.Acceptable_Max_Wasted.Value = New Decimal(New Integer() {10, 0, 0, 0})
         '
@@ -92,19 +93,23 @@ Partial Class Form1
         '
         'Total_Length
         '
-        Me.Total_Length.Location = New System.Drawing.Point(235, 32)
+        Me.Total_Length.DecimalPlaces = 1
+        Me.Total_Length.Location = New System.Drawing.Point(261, 32)
+        Me.Total_Length.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
         Me.Total_Length.Name = "Total_Length"
-        Me.Total_Length.Size = New System.Drawing.Size(227, 36)
+        Me.Total_Length.Size = New System.Drawing.Size(201, 36)
         Me.Total_Length.TabIndex = 7
-        Me.Total_Length.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.Total_Length.Value = New Decimal(New Integer() {1000, 0, 0, 0})
         '
         'SpecLength
         '
+        Me.SpecLength.DecimalPlaces = 1
         Me.SpecLength.Location = New System.Drawing.Point(204, 45)
+        Me.SpecLength.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         Me.SpecLength.Name = "SpecLength"
         Me.SpecLength.Size = New System.Drawing.Size(206, 36)
         Me.SpecLength.TabIndex = 8
-        Me.SpecLength.Value = New Decimal(New Integer() {10, 0, 0, 0})
+        Me.SpecLength.Value = New Decimal(New Integer() {200, 0, 0, 0})
         '
         'Label3
         '
@@ -124,14 +129,14 @@ Partial Class Form1
         Me.Calculate.Text = "計算"
         Me.Calculate.UseVisualStyleBackColor = True
         '
-        'ListBox1
+        'SpecList
         '
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 24
-        Me.ListBox1.Location = New System.Drawing.Point(30, 180)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(380, 268)
-        Me.ListBox1.TabIndex = 9
+        Me.SpecList.FormattingEnabled = True
+        Me.SpecList.ItemHeight = 24
+        Me.SpecList.Location = New System.Drawing.Point(30, 180)
+        Me.SpecList.Name = "SpecList"
+        Me.SpecList.Size = New System.Drawing.Size(380, 268)
+        Me.SpecList.TabIndex = 9
         '
         'DeleteSpec
         '
@@ -139,7 +144,7 @@ Partial Class Form1
         Me.DeleteSpec.Name = "DeleteSpec"
         Me.DeleteSpec.Size = New System.Drawing.Size(180, 42)
         Me.DeleteSpec.TabIndex = 10
-        Me.DeleteSpec.Text = "刪除所選取的"
+        Me.DeleteSpec.Text = "刪除項目"
         Me.DeleteSpec.UseVisualStyleBackColor = True
         '
         'ClearSpec
@@ -148,7 +153,7 @@ Partial Class Form1
         Me.ClearSpec.Name = "ClearSpec"
         Me.ClearSpec.Size = New System.Drawing.Size(180, 42)
         Me.ClearSpec.TabIndex = 11
-        Me.ClearSpec.Text = "清空規格列表"
+        Me.ClearSpec.Text = "清空列表"
         Me.ClearSpec.UseVisualStyleBackColor = True
         '
         'Form1
@@ -188,5 +193,5 @@ Partial Class Form1
     Friend WithEvents Calculate As Button
     Friend WithEvents ClearSpec As Button
     Friend WithEvents DeleteSpec As Button
-    Friend WithEvents ListBox1 As ListBox
+    Friend WithEvents SpecList As ListBox
 End Class
