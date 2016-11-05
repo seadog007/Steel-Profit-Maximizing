@@ -24,20 +24,21 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.AddSpec = New System.Windows.Forms.Button()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ClearSpec = New System.Windows.Forms.Button()
+        Me.DeleteSpec = New System.Windows.Forms.Button()
+        Me.SpecList = New System.Windows.Forms.ListBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.SpecLength = New System.Windows.Forms.NumericUpDown()
         Me.Acceptable_Max_Wasted = New System.Windows.Forms.NumericUpDown()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Total_Length = New System.Windows.Forms.NumericUpDown()
-        Me.SpecLength = New System.Windows.Forms.NumericUpDown()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.Calculate = New System.Windows.Forms.Button()
-        Me.SpecList = New System.Windows.Forms.ListBox()
-        Me.DeleteSpec = New System.Windows.Forms.Button()
-        Me.ClearSpec = New System.Windows.Forms.Button()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.SpecLength, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Acceptable_Max_Wasted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Total_Length, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SpecLength, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'AddSpec
@@ -63,6 +64,52 @@ Partial Class Form1
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "需求規格"
+        '
+        'ClearSpec
+        '
+        Me.ClearSpec.Location = New System.Drawing.Point(230, 474)
+        Me.ClearSpec.Name = "ClearSpec"
+        Me.ClearSpec.Size = New System.Drawing.Size(180, 42)
+        Me.ClearSpec.TabIndex = 11
+        Me.ClearSpec.Text = "清空列表"
+        Me.ClearSpec.UseVisualStyleBackColor = True
+        '
+        'DeleteSpec
+        '
+        Me.DeleteSpec.Location = New System.Drawing.Point(30, 474)
+        Me.DeleteSpec.Name = "DeleteSpec"
+        Me.DeleteSpec.Size = New System.Drawing.Size(180, 42)
+        Me.DeleteSpec.TabIndex = 10
+        Me.DeleteSpec.Text = "刪除項目"
+        Me.DeleteSpec.UseVisualStyleBackColor = True
+        '
+        'SpecList
+        '
+        Me.SpecList.FormattingEnabled = True
+        Me.SpecList.ItemHeight = 24
+        Me.SpecList.Location = New System.Drawing.Point(30, 180)
+        Me.SpecList.Name = "SpecList"
+        Me.SpecList.Size = New System.Drawing.Size(380, 268)
+        Me.SpecList.TabIndex = 9
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(26, 47)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(82, 24)
+        Me.Label3.TabIndex = 8
+        Me.Label3.Text = "長度："
+        '
+        'SpecLength
+        '
+        Me.SpecLength.DecimalPlaces = 1
+        Me.SpecLength.Location = New System.Drawing.Point(204, 45)
+        Me.SpecLength.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.SpecLength.Name = "SpecLength"
+        Me.SpecLength.Size = New System.Drawing.Size(206, 36)
+        Me.SpecLength.TabIndex = 8
+        Me.SpecLength.Value = New Decimal(New Integer() {200, 0, 0, 0})
         '
         'Acceptable_Max_Wasted
         '
@@ -101,25 +148,6 @@ Partial Class Form1
         Me.Total_Length.TabIndex = 7
         Me.Total_Length.Value = New Decimal(New Integer() {1000, 0, 0, 0})
         '
-        'SpecLength
-        '
-        Me.SpecLength.DecimalPlaces = 1
-        Me.SpecLength.Location = New System.Drawing.Point(204, 45)
-        Me.SpecLength.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.SpecLength.Name = "SpecLength"
-        Me.SpecLength.Size = New System.Drawing.Size(206, 36)
-        Me.SpecLength.TabIndex = 8
-        Me.SpecLength.Value = New Decimal(New Integer() {200, 0, 0, 0})
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(26, 47)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 24)
-        Me.Label3.TabIndex = 8
-        Me.Label3.Text = "長度："
-        '
         'Calculate
         '
         Me.Calculate.Location = New System.Drawing.Point(31, 730)
@@ -129,32 +157,10 @@ Partial Class Form1
         Me.Calculate.Text = "計算"
         Me.Calculate.UseVisualStyleBackColor = True
         '
-        'SpecList
+        'SaveFileDialog1
         '
-        Me.SpecList.FormattingEnabled = True
-        Me.SpecList.ItemHeight = 24
-        Me.SpecList.Location = New System.Drawing.Point(30, 180)
-        Me.SpecList.Name = "SpecList"
-        Me.SpecList.Size = New System.Drawing.Size(380, 268)
-        Me.SpecList.TabIndex = 9
-        '
-        'DeleteSpec
-        '
-        Me.DeleteSpec.Location = New System.Drawing.Point(30, 474)
-        Me.DeleteSpec.Name = "DeleteSpec"
-        Me.DeleteSpec.Size = New System.Drawing.Size(180, 42)
-        Me.DeleteSpec.TabIndex = 10
-        Me.DeleteSpec.Text = "刪除項目"
-        Me.DeleteSpec.UseVisualStyleBackColor = True
-        '
-        'ClearSpec
-        '
-        Me.ClearSpec.Location = New System.Drawing.Point(230, 474)
-        Me.ClearSpec.Name = "ClearSpec"
-        Me.ClearSpec.Size = New System.Drawing.Size(180, 42)
-        Me.ClearSpec.TabIndex = 11
-        Me.ClearSpec.Text = "清空列表"
-        Me.ClearSpec.UseVisualStyleBackColor = True
+        Me.SaveFileDialog1.Filter = "CSV檔案|*.csv"
+        Me.SaveFileDialog1.Title = "存為CSV"
         '
         'Form1
         '
@@ -174,9 +180,9 @@ Partial Class Form1
         Me.Text = "鋼捲裁切利益最大化"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.SpecLength, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Acceptable_Max_Wasted, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Total_Length, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SpecLength, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -194,4 +200,5 @@ Partial Class Form1
     Friend WithEvents ClearSpec As Button
     Friend WithEvents DeleteSpec As Button
     Friend WithEvents SpecList As ListBox
+    Friend WithEvents SaveFileDialog1 As SaveFileDialog
 End Class

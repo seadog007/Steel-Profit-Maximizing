@@ -1,4 +1,5 @@
 ﻿Public Class Form1
+    Dim output As String
     Private Sub Calculate_Click(sender As Object, e As EventArgs) Handles Calculate.Click
         Dim combination_element()() As Integer
         ReDim combination_element(SpecList.Items.Count - 1)
@@ -9,23 +10,29 @@
             Next
         Next
 
-
-        Dim output As String = ""
+        output = ""
         Dim MyArray(SpecList.Items.Count) As String
         SpecList.Items.CopyTo(MyArray, 0)
-        output += "Hi, " & String.Join(", ", MyArray) & vbCrLf
+        output += "Serial, " & String.Join(", ", MyArray) & "Wasted Material" & vbCrLf
         Dim count As Integer = 0
         For Each elements As Integer() In CartesianProduct(combination_element)
-            Dim amount As Integer = 0
+            Dim amount As Double = 0
             For k As Integer = 0 To elements.Length - 1
                 amount += FormatNumber(CDbl(SpecList.Items(k).ToString), 1) * elements(k)
             Next
             If amount <= Total_Length.Value And amount >= Total_Length.Value - Acceptable_Max_Wasted.Value Then
                 count += 1
-                output += count & ", " & String.Join(", ", elements) & ", " & amount & vbCrLf
+                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Length.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & vbCrLf
             End If
         Next
-        MsgBox(output)
+        If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
+            Try
+                System.IO.File.WriteAllText(SaveFileDialog1.FileName, output)
+            Catch ex As Exception
+                MsgBox("無法儲存檔案" & vbCrLf & ex.Message)
+            End Try
+        End If
+        GC.Collect()
     End Sub
 
     Private Sub AddSpec_Click(sender As Object, e As EventArgs) Handles AddSpec.Click
