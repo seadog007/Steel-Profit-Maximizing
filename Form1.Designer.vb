@@ -155,7 +155,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(489, 838)
+        Me.ClientSize = New System.Drawing.Size(489, 849)
         Me.Controls.Add(Me.Calculate)
         Me.Controls.Add(Me.Total_Length)
         Me.Controls.Add(Me.Label2)
@@ -163,8 +163,8 @@ Partial Class Form1
         Me.Controls.Add(Me.Acceptable_Max_Wasted)
         Me.Controls.Add(Me.GroupBox1)
         Me.MaximizeBox = False
-        Me.MaximumSize = New System.Drawing.Size(515, 909)
-        Me.MinimumSize = New System.Drawing.Size(515, 909)
+        Me.MaximumSize = New System.Drawing.Size(515, 920)
+        Me.MinimumSize = New System.Drawing.Size(515, 920)
         Me.Name = "Form1"
         Me.Text = "鋼捲裁切利益最大化"
         Me.GroupBox1.ResumeLayout(False)
