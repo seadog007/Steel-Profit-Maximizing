@@ -97,9 +97,9 @@ Partial Class Form1
         Me.Label3.AutoSize = True
         Me.Label3.Location = New System.Drawing.Point(26, 47)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 24)
+        Me.Label3.Size = New System.Drawing.Size(140, 24)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "寬度："
+        Me.Label3.Text = "寬度 (mm)："
         '
         'SpecWidth
         '
@@ -114,9 +114,9 @@ Partial Class Form1
         'Acceptable_Max_Wasted
         '
         Me.Acceptable_Max_Wasted.DecimalPlaces = 1
-        Me.Acceptable_Max_Wasted.Location = New System.Drawing.Point(261, 92)
+        Me.Acceptable_Max_Wasted.Location = New System.Drawing.Point(327, 92)
         Me.Acceptable_Max_Wasted.Name = "Acceptable_Max_Wasted"
-        Me.Acceptable_Max_Wasted.Size = New System.Drawing.Size(201, 36)
+        Me.Acceptable_Max_Wasted.Size = New System.Drawing.Size(135, 36)
         Me.Acceptable_Max_Wasted.TabIndex = 4
         Me.Acceptable_Max_Wasted.Value = New Decimal(New Integer() {10, 0, 0, 0})
         '
@@ -125,18 +125,18 @@ Partial Class Form1
         Me.Label1.AutoSize = True
         Me.Label1.Location = New System.Drawing.Point(27, 94)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(202, 24)
+        Me.Label1.Size = New System.Drawing.Size(260, 24)
         Me.Label1.TabIndex = 5
-        Me.Label1.Text = "可容許耗損範圍："
+        Me.Label1.Text = "可容許耗損範圍 (mm)："
         '
         'Label2
         '
         Me.Label2.AutoSize = True
         Me.Label2.Location = New System.Drawing.Point(27, 34)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(154, 24)
+        Me.Label2.Size = New System.Drawing.Size(212, 24)
         Me.Label2.TabIndex = 6
-        Me.Label2.Text = "鋼捲總寬度："
+        Me.Label2.Text = "鋼捲總寬度 (mm)："
         '
         'Total_Width
         '
