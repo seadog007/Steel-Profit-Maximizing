@@ -4,8 +4,8 @@
         Dim combination_element()() As Integer
         ReDim combination_element(SpecList.Items.Count - 1)
         For i As Integer = 0 To SpecList.Items.Count - 1
-            ReDim combination_element(i)(Int(Total_Length.Value / SpecList.Items(i).ToString) + 1)
-            For j As Integer = 0 To Int(Total_Length.Value / SpecList.Items(i).ToString) + 1
+            ReDim combination_element(i)(Int(Total_Width.Value / SpecList.Items(i).ToString) + 1)
+            For j As Integer = 0 To Int(Total_Width.Value / SpecList.Items(i).ToString) + 1
                 combination_element(i)(j) = j
             Next
         Next
@@ -20,9 +20,9 @@
             For k As Integer = 0 To elements.Length - 1
                 amount += FormatNumber(CDbl(SpecList.Items(k).ToString), 1) * elements(k)
             Next
-            If amount <= Total_Length.Value And amount >= Total_Length.Value - Acceptable_Max_Wasted.Value Then
+            If amount <= Total_Width.Value And amount >= Total_Width.Value - Acceptable_Max_Wasted.Value Then
                 count += 1
-                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Length.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & vbCrLf
+                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Width.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & vbCrLf
             End If
         Next
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
@@ -36,10 +36,10 @@
     End Sub
 
     Private Sub AddSpec_Click(sender As Object, e As EventArgs) Handles AddSpec.Click
-        If SpecList.Items.Contains(SpecLength.Value) Then
+        If SpecList.Items.Contains(SpecWidth.Value) Then
             MessageBox.Show("該規格已存在", "錯誤")
         Else
-            SpecList.Items.Add(FormatNumber(CDbl(SpecLength.Value), 1))
+            SpecList.Items.Add(FormatNumber(CDbl(SpecWidth.Value), 1))
         End If
     End Sub
 
@@ -53,7 +53,7 @@
         SpecList.Items.Clear()
     End Sub
 
-    Private Sub SpecLength_KeyDown(sender As Object, e As KeyEventArgs) Handles SpecLength.KeyDown
+    Private Sub SpecWidth_KeyDown(sender As Object, e As KeyEventArgs) Handles SpecWidth.KeyDown
         If e.KeyCode = Keys.Enter Then
             AddSpec_Click(sender, e)
         End If

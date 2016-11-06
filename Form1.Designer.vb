@@ -28,17 +28,17 @@ Partial Class Form1
         Me.DeleteSpec = New System.Windows.Forms.Button()
         Me.SpecList = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.SpecLength = New System.Windows.Forms.NumericUpDown()
+        Me.SpecWidth = New System.Windows.Forms.NumericUpDown()
         Me.Acceptable_Max_Wasted = New System.Windows.Forms.NumericUpDown()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Total_Length = New System.Windows.Forms.NumericUpDown()
+        Me.Total_Width = New System.Windows.Forms.NumericUpDown()
         Me.Calculate = New System.Windows.Forms.Button()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.SpecLength, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SpecWidth, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Acceptable_Max_Wasted, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.Total_Length, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Total_Width, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'AddSpec
@@ -56,7 +56,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.DeleteSpec)
         Me.GroupBox1.Controls.Add(Me.SpecList)
         Me.GroupBox1.Controls.Add(Me.Label3)
-        Me.GroupBox1.Controls.Add(Me.SpecLength)
+        Me.GroupBox1.Controls.Add(Me.SpecWidth)
         Me.GroupBox1.Controls.Add(Me.AddSpec)
         Me.GroupBox1.Location = New System.Drawing.Point(31, 167)
         Me.GroupBox1.Name = "GroupBox1"
@@ -99,17 +99,17 @@ Partial Class Form1
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(82, 24)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "長度："
+        Me.Label3.Text = "寬度："
         '
-        'SpecLength
+        'SpecWidth
         '
-        Me.SpecLength.DecimalPlaces = 1
-        Me.SpecLength.Location = New System.Drawing.Point(204, 45)
-        Me.SpecLength.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        Me.SpecLength.Name = "SpecLength"
-        Me.SpecLength.Size = New System.Drawing.Size(206, 36)
-        Me.SpecLength.TabIndex = 8
-        Me.SpecLength.Value = New Decimal(New Integer() {200, 0, 0, 0})
+        Me.SpecWidth.DecimalPlaces = 1
+        Me.SpecWidth.Location = New System.Drawing.Point(204, 45)
+        Me.SpecWidth.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        Me.SpecWidth.Name = "SpecWidth"
+        Me.SpecWidth.Size = New System.Drawing.Size(206, 36)
+        Me.SpecWidth.TabIndex = 8
+        Me.SpecWidth.Value = New Decimal(New Integer() {200, 0, 0, 0})
         '
         'Acceptable_Max_Wasted
         '
@@ -136,17 +136,17 @@ Partial Class Form1
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(154, 24)
         Me.Label2.TabIndex = 6
-        Me.Label2.Text = "鋼捲總長度："
+        Me.Label2.Text = "鋼捲總寬度："
         '
-        'Total_Length
+        'Total_Width
         '
-        Me.Total_Length.DecimalPlaces = 1
-        Me.Total_Length.Location = New System.Drawing.Point(261, 32)
-        Me.Total_Length.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
-        Me.Total_Length.Name = "Total_Length"
-        Me.Total_Length.Size = New System.Drawing.Size(201, 36)
-        Me.Total_Length.TabIndex = 7
-        Me.Total_Length.Value = New Decimal(New Integer() {1000, 0, 0, 0})
+        Me.Total_Width.DecimalPlaces = 1
+        Me.Total_Width.Location = New System.Drawing.Point(261, 32)
+        Me.Total_Width.Maximum = New Decimal(New Integer() {10000000, 0, 0, 0})
+        Me.Total_Width.Name = "Total_Width"
+        Me.Total_Width.Size = New System.Drawing.Size(201, 36)
+        Me.Total_Width.TabIndex = 7
+        Me.Total_Width.Value = New Decimal(New Integer() {1000, 0, 0, 0})
         '
         'Calculate
         '
@@ -168,7 +168,7 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(489, 849)
         Me.Controls.Add(Me.Calculate)
-        Me.Controls.Add(Me.Total_Length)
+        Me.Controls.Add(Me.Total_Width)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Acceptable_Max_Wasted)
@@ -180,9 +180,9 @@ Partial Class Form1
         Me.Text = "鋼捲裁切利益最大化"
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.SpecLength, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SpecWidth, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Acceptable_Max_Wasted, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.Total_Length, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Total_Width, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -191,11 +191,11 @@ Partial Class Form1
     Friend WithEvents AddSpec As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label3 As Label
-    Friend WithEvents SpecLength As NumericUpDown
+    Friend WithEvents SpecWidth As NumericUpDown
     Friend WithEvents Acceptable_Max_Wasted As NumericUpDown
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
-    Friend WithEvents Total_Length As NumericUpDown
+    Friend WithEvents Total_Width As NumericUpDown
     Friend WithEvents Calculate As Button
     Friend WithEvents ClearSpec As Button
     Friend WithEvents DeleteSpec As Button
