@@ -4,8 +4,8 @@
         Dim combination_element()() As Integer
         ReDim combination_element(SpecList.Items.Count - 1)
         For i As Integer = 0 To SpecList.Items.Count - 1
-            ReDim combination_element(i)(Int(Total_Width.Value / SpecList.Items(i).ToString) + 1)
-            For j As Integer = 0 To Int(Total_Width.Value / SpecList.Items(i).ToString) + 1
+            ReDim combination_element(i)(Int(Total_Width.Value / SpecList.Items(i).ToString))
+            For j As Integer = 0 To Int(Total_Width.Value / SpecList.Items(i).ToString)
                 combination_element(i)(j) = j
             Next
         Next
