@@ -70,7 +70,7 @@
         Return result.ToArray()
     End Function
 
-    Function print_equation(ByVal input As Integer())
+    Private Function print_equation(ByVal input As Integer())
         Dim out As New List(Of String)
         For i As Integer = 0 To SpecList.Items.Count - 1
             If input(i) > 0 Then
