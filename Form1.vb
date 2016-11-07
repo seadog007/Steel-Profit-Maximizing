@@ -11,9 +11,9 @@
         Next
 
         output = ""
-        Dim MyArray(SpecList.Items.Count) As String
+        Dim MyArray(SpecList.Items.Count - 1) As String
         SpecList.Items.CopyTo(MyArray, 0)
-        output += "Serial, " & String.Join(", ", MyArray) & "Wasted Material" & vbCrLf
+        output += "Serial, " & String.Join(", ", MyArray) & ", Wasted Material" & vbCrLf
         Dim count As Integer = 0
         For Each elements As Integer() In CartesianProduct(combination_element)
             Dim amount As Double = 0
