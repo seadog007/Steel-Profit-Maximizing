@@ -1,30 +1,27 @@
 ﻿Public Class Form1
-    Dim output As String
+
     Private Sub Calculate_Click(sender As Object, e As EventArgs) Handles Calculate.Click
-        Dim combination_element()() As Integer
-        ReDim combination_element(SpecList.Items.Count - 1)
+        Dim combination_element(SpecList.Items.Count - 1) As Integer
         For i As Integer = 0 To SpecList.Items.Count - 1
-            ReDim combination_element(i)(Int(Total_Width.Value / SpecList.Items(i).ToString))
-            For j As Integer = 0 To Int(Total_Width.Value / SpecList.Items(i).ToString)
-                combination_element(i)(j) = j
-            Next
+            combination_element(i) = Int(Total_Width.Value / SpecList.Items(i).ToString)
         Next
 
-        output = ""
-        Dim MyArray(SpecList.Items.Count - 1) As String
-        SpecList.Items.CopyTo(MyArray, 0)
-        output += "Serial, " & String.Join(", ", MyArray) & ", Wasted Material, Equation" & vbCrLf
-        Dim count As Integer = 0
-        For Each elements As Integer() In CartesianProduct(combination_element)
+        Dim output As String = ""
+        Dim output_count As Integer = 0
+        Dim temp(SpecList.Items.Count - 1) As String
+        SpecList.Items.CopyTo(temp, 0)
+        output += "Serial, " & String.Join(", ", temp) & ", Wasted Material, Equation" & vbCrLf
+
+        run(1, combination_element, 0, {})
+        For Each elements As Integer() In result
             Dim amount As Double = 0
             For k As Integer = 0 To elements.Length - 1
-                amount += FormatNumber(CDbl(SpecList.Items(k).ToString), 1) * elements(k)
+                amount += CDbl(SpecList.Items(k).ToString) * elements(k)
             Next
-            If amount <= Total_Width.Value And amount >= Total_Width.Value - Acceptable_Max_Wasted.Value Then
-                count += 1
-                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Width.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & ", " & print_equation(elements, FormatNumber(CDbl(amount), 1)) & vbCrLf
-            End If
+            output_count += 1
+            output += output_count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(Total_Width.Value - amount), 1) & ", " & print_equation(SpecList.Items, elements, amount) & vbCrLf
         Next
+
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
             Try
                 System.IO.File.WriteAllText(SaveFileDialog1.FileName, output)
@@ -59,24 +56,42 @@
         End If
     End Sub
 
-    Private Function CartesianProduct(Of T)(ParamArray sequences As T()()) As T()()
-        Dim result As IEnumerable(Of T()) = {New T() {}}
-        For Each sequence In sequences
-            Dim s = sequence
-            result = From seq In result
-                     From item In s
-                     Select seq.Concat({item}).ToArray()
-        Next
-        Return result.ToArray()
-    End Function
+    Dim result(0)() As Integer
+    Dim result_count As Integer
+    Private Sub run(ByVal depth As Integer, ByVal input As Integer(), ByVal sum As Double, ByVal road As Integer())
+        If depth = 1 Then
+            Array.Clear(result, 0, result.Length)
+            result_count = 0
+        End If
+        If depth > SpecList.Items.Count Then
+            If sum <= Total_Width.Value And sum >= Total_Width.Value - Acceptable_Max_Wasted.Value Then
+                result_count += 1
+                Array.Resize(result, result_count)
+                Array.Resize(result(result_count - 1), SpecList.Items.Count)
+                road.CopyTo(result(result_count - 1), 0)
+            End If
+        Else
+            Dim osum As Double
+            For i As Integer = 0 To input(0)
+                If i = 0 Then
+                    osum = sum
+                End If
+                sum = osum
+                sum += CDbl(SpecList.Items(SpecList.Items.Count - input.Length)) * i
+                Array.Resize(road, depth)
+                road(road.Length - 1) = i
+                run(depth + 1, input.Skip(1).ToArray, sum, road)
+            Next
+        End If
+    End Sub
 
-    Private Function print_equation(ByVal input As Integer(), ByVal result As Integer)
+    Private Function print_equation(ByVal spec As ListBox.ObjectCollection, ByVal input As Integer(), ByVal sum As Double)
         Dim out As New List(Of String)
-        For i As Integer = 0 To SpecList.Items.Count - 1
+        For i As Integer = 0 To spec.Count - 1
             If input(i) > 0 Then
-                out.Add(SpecList.Items(i).ToString & "*" & input(i))
+                out.Add(spec(i).ToString & "*" & input(i))
             End If
         Next
-        Return (String.Join("+", out) & "=" & result)
+        Return (String.Join("+", out) & "=" & sum)
     End Function
 End Class
