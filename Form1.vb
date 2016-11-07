@@ -13,7 +13,7 @@
         output = ""
         Dim MyArray(SpecList.Items.Count - 1) As String
         SpecList.Items.CopyTo(MyArray, 0)
-        output += "Serial, " & String.Join(", ", MyArray) & ", Wasted Material" & vbCrLf
+        output += "Serial, " & String.Join(", ", MyArray) & ", Wasted Material, Equation" & vbCrLf
         Dim count As Integer = 0
         For Each elements As Integer() In CartesianProduct(combination_element)
             Dim amount As Double = 0
@@ -22,7 +22,7 @@
             Next
             If amount <= Total_Width.Value And amount >= Total_Width.Value - Acceptable_Max_Wasted.Value Then
                 count += 1
-                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Width.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & ", " & print_equation(elements) & vbCrLf
+                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Width.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & ", " & print_equation(elements, FormatNumber(CDbl(amount), 1)) & vbCrLf
             End If
         Next
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
@@ -70,13 +70,13 @@
         Return result.ToArray()
     End Function
 
-    Private Function print_equation(ByVal input As Integer())
+    Private Function print_equation(ByVal input As Integer(), ByVal result As Integer)
         Dim out As New List(Of String)
         For i As Integer = 0 To SpecList.Items.Count - 1
             If input(i) > 0 Then
                 out.Add(SpecList.Items(i).ToString & "*" & input(i))
             End If
         Next
-        Return String.Join("+", out)
+        Return (String.Join("+", out) & "=" & result)
     End Function
 End Class
