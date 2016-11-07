@@ -22,7 +22,7 @@
             Next
             If amount <= Total_Width.Value And amount >= Total_Width.Value - Acceptable_Max_Wasted.Value Then
                 count += 1
-                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Width.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & vbCrLf
+                output += count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(FormatNumber(CDbl(Total_Width.Value), 1) - FormatNumber(CDbl(amount), 1)), 1) & ", " & print_equation(elements) & vbCrLf
             End If
         Next
         If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
@@ -68,5 +68,15 @@
                      Select seq.Concat({item}).ToArray()
         Next
         Return result.ToArray()
+    End Function
+
+    Function print_equation(ByVal input As Integer())
+        Dim out As New List(Of String)
+        For i As Integer = 0 To SpecList.Items.Count - 1
+            If input(i) > 0 Then
+                out.Add(SpecList.Items(i).ToString & "*" & input(i))
+            End If
+        Next
+        Return String.Join("+", out)
     End Function
 End Class
