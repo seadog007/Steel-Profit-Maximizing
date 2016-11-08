@@ -6,33 +6,34 @@
             For i As Integer = 0 To SpecList.Items.Count - 1
                 combination_element(i) = Int(Total_Width.Value / SpecList.Items(i).ToString)
             Next
-
-            Dim output As String = ""
-            Dim output_count As Integer = 0
-            Dim temp(SpecList.Items.Count - 1) As String
-            SpecList.Items.CopyTo(temp, 0)
-            output = "Serial, " & String.Join(", ", temp) & ", Wasted Material, Equation" & vbCrLf
-
             run(1, combination_element, 0, {})
-            For Each elements As Integer() In result
-                Dim amount As Double = 0
-                For k As Integer = 0 To elements.Length - 1
-                    amount += CDbl(SpecList.Items(k).ToString) * elements(k)
+            If result(0) Is Nothing Then
+                MsgBox("無法找到符合利益的解")
+            Else
+                Dim output As String = ""
+                Dim output_count As Integer = 0
+                Dim temp(SpecList.Items.Count - 1) As String
+                SpecList.Items.CopyTo(temp, 0)
+                output = "Serial, " & String.Join(", ", temp) & ", Wasted Material, Equation" & vbCrLf
+                For Each elements As Integer() In result
+                    Dim amount As Double = 0
+                    For k As Integer = 0 To elements.Length - 1
+                        amount += CDbl(SpecList.Items(k).ToString) * elements(k)
+                    Next
+                    output_count += 1
+                    output += output_count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(Total_Width.Value - amount), 1) & ", " & print_equation(SpecList.Items, elements, amount) & vbCrLf
                 Next
-                output_count += 1
-                output += output_count & ", " & String.Join(", ", elements) & ", " & FormatNumber(CDbl(Total_Width.Value - amount), 1) & ", " & print_equation(SpecList.Items, elements, amount) & vbCrLf
-            Next
-
-            If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
-                Try
-                    System.IO.File.WriteAllText(SaveFileDialog1.FileName, output)
-                Catch ex As Exception
-                    MsgBox("無法儲存檔案" & vbCrLf & ex.Message)
-                End Try
+                If SaveFileDialog1.ShowDialog() = DialogResult.OK Then
+                    Try
+                        System.IO.File.WriteAllText(SaveFileDialog1.FileName, output)
+                    Catch ex As Exception
+                        MsgBox("無法儲存檔案" & vbCrLf & ex.Message)
+                    End Try
+                End If
+                GC.Collect()
             End If
-            GC.Collect()
         Else
-            MsgBox("請新增需求規格")
+                MsgBox("請新增需求規格")
         End If
     End Sub
 
