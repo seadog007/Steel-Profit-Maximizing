@@ -41,7 +41,7 @@
         If SpecList.Items.Contains(SpecWidth.Value) Then
             MessageBox.Show("該規格已存在", "錯誤")
         Else
-            SpecList.Items.Add(FormatNumber(CDbl(SpecWidth.Value), 1))
+            SpecList.Items.Add(FormatNumber(CDbl(SpecWidth.Value), 1, GroupDigits:=0))
         End If
     End Sub
 
